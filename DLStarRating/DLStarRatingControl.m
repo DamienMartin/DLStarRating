@@ -25,11 +25,16 @@
 - (void)setupView {
 	self.clipsToBounds = YES;
 	currentIdx = -1;
-	star = [[UIImage imageNamed:@"star.png"] retain];    
-	highlightedStar = [[UIImage imageNamed:@"star_highlighted.png"] retain];    
+	if(star == nil) {
+		star = [[UIImage imageNamed:@"star.png"] retain];
+	}
+	
+	if(highlightedStar == nil) {
+		highlightedStar = [[UIImage imageNamed:@"star_highlighted.png"] retain];
+	}
 
 	for (int i=0; i<numberOfStars; i++) {
-		DLStarView *v = [[DLStarView alloc] initWithDefault:self.star highlighted:self.highlightedStar position:i allowFractions:isFractionalRatingEnabled];
+		DLStarView *v = [[DLStarView alloc] initWithDefault:self.star highlighted:self.highlightedStar offset:_offset position:i allowFractions:isFractionalRatingEnabled];
 		[self addSubview:v];
 		[v release];
 	}
@@ -62,10 +67,12 @@
 	self = [super initWithFrame:frame];
 	if (self) {
         isFractionalRatingEnabled = isFract;
-		numberOfStars = _numberOfStars;
-        if (isFractionalRatingEnabled)
-            numberOfStars *=kNumberOfFractions;
-		[self setupView];
+		numberOfStars = (int)_numberOfStars;
+		
+        if (isFractionalRatingEnabled) {
+            numberOfStars *= kNumberOfFractions;
+		}
+//		[self setupView];
 	}
 	return self;
 }
@@ -78,12 +85,6 @@
 
 #pragma mark -
 #pragma mark Customization
-
-- (void)setStar:(UIImage*)defaultStarImage highlightedStar:(UIImage*)highlightedStarImage {
-  for(NSInteger i = 0; i < numberOfStars; i++){
-    [self setStar:defaultStarImage highlightedStar:highlightedStarImage atIndex:i];
-  }
-}
 
 - (void)setStar:(UIImage*)defaultStarImage highlightedStar:(UIImage*)highlightedStarImage atIndex:(int)index {
     DLStarView *selectedStar = (DLStarView*)[self subViewWithTag:index];
@@ -136,7 +137,7 @@
 	CGPoint point = [touch locationInView:self];	
 	UIButton *pressedButton = [self starForPoint:point];
 	if (pressedButton) {
-		int idx = pressedButton.tag;
+		int idx = pressedButton.tag; 
 		if (pressedButton.highlighted) {
 			[self disableStarsDownToExclusive:idx];
 		} else {

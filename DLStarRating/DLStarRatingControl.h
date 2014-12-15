@@ -28,19 +28,22 @@
 
 - (id)initWithFrame:(CGRect)frame;
 - (id)initWithFrame:(CGRect)frame andStars:(NSUInteger)_numberOfStars isFractional:(BOOL)isFract;
-- (void)setStar:(UIImage*)defaultStarImage highlightedStar:(UIImage*)highlightedStarImage;
+- (void)setupView;
 - (void)setStar:(UIImage*)defaultStarImage highlightedStar:(UIImage*)highlightedStarImage atIndex:(int)index;
 
+@property (nonatomic, assign) CGFloat offset;
 @property (retain,nonatomic) UIImage *star;
 @property (retain,nonatomic) UIImage *highlightedStar;
 @property (nonatomic) float rating;
 @property (assign,nonatomic) id<DLStarRatingDelegate> delegate;
 @property (nonatomic,assign) BOOL isFractionalRatingEnabled;
 
+
+
 @end
 
 @protocol DLStarRatingDelegate
 
--(void)newRating:(DLStarRatingControl *)control :(float)rating;
+- (void)newRating:(DLStarRatingControl *)control :(float)rating;
 
 @end
