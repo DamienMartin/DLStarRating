@@ -29,8 +29,7 @@
 	customNumberOfStars.autoresizingMask =  UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
 	customNumberOfStars.rating = 2.5;
 	[self.view addSubview:customNumberOfStars];
-    [customNumberOfStars release];
-    
+
     // Custom Images 
     DLStarRatingControl *customStarImageControl = [[DLStarRatingControl alloc] initWithFrame:CGRectMake(0.0, 307.0, 320.0, 153.0)];
     
@@ -43,7 +42,6 @@
     customStarImageControl.autoresizingMask =  UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
     customStarImageControl.rating = 3;
     [self.view addSubview:customStarImageControl];
-    [customStarImageControl release];
     
 }
 
@@ -56,15 +54,6 @@
 
 -(void)newRating:(DLStarRatingControl *)control :(float)rating {
 	self.stars.text = [NSString stringWithFormat:@"%0.1f star rating",rating];
-}
-
-
-#pragma mark -
-#pragma mark Memory Management
-
-- (void)dealloc {
-	self.stars = nil;
-	[super dealloc];
 }
 
 @end

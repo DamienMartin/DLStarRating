@@ -22,28 +22,24 @@
 	int currentIdx;
 	UIImage *star;
 	UIImage *highlightedStar;
-	IBOutlet id<DLStarRatingDelegate> delegate;
     BOOL isFractionalRatingEnabled;
 }
 
 - (id)initWithFrame:(CGRect)frame;
 - (id)initWithFrame:(CGRect)frame andStars:(NSUInteger)_numberOfStars isFractional:(BOOL)isFract;
-- (void)setupView;
 - (void)setStar:(UIImage*)defaultStarImage highlightedStar:(UIImage*)highlightedStarImage atIndex:(int)index;
 
-@property (nonatomic, assign) CGFloat offset;
-@property (retain,nonatomic) UIImage *star;
-@property (retain,nonatomic) UIImage *highlightedStar;
+@property (strong,nonatomic) UIImage *star;
+@property (strong,nonatomic) UIImage *highlightedStar;
 @property (nonatomic) float rating;
-@property (assign,nonatomic) id<DLStarRatingDelegate> delegate;
+@property (assign,nonatomic) IBOutlet id<DLStarRatingDelegate> delegate;
 @property (nonatomic,assign) BOOL isFractionalRatingEnabled;
-
-
 
 @end
 
 @protocol DLStarRatingDelegate
 
-- (void)newRating:(DLStarRatingControl *)control :(float)rating;
+-(void)newRating:(DLStarRatingControl *)control :(float)rating;
 
 @end
+	
