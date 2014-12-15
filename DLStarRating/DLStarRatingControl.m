@@ -25,10 +25,22 @@
 - (void)setupView {
 	self.clipsToBounds = YES;
 	currentIdx = -1;
-	star = [UIImage imageNamed:@"star.png"];
-	highlightedStar = [UIImage imageNamed:@"star_highlighted.png"];        
+
+	if(star == nil) {
+		star = [UIImage imageNamed:@"star.png"];
+	}
+	
+	if(highlightedStar == nil) {
+		highlightedStar = [UIImage imageNamed:@"star_highlighted.png"];
+	}
+
+	
 	for (int i=0; i<numberOfStars; i++) {
-		DLStarView *v = [[DLStarView alloc] initWithDefault:self.star highlighted:self.highlightedStar position:i allowFractions:isFractionalRatingEnabled];
+		DLStarView *v = [[DLStarView alloc] initWithDefault:self.star
+												highlighted:self.highlightedStar
+													 offset:_offset
+												   position:i
+											 allowFractions:isFractionalRatingEnabled];
 		[self addSubview:v];
 	}
 }

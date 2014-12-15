@@ -27,8 +27,8 @@
 
 - (id)initWithFrame:(CGRect)frame;
 - (id)initWithFrame:(CGRect)frame andStars:(NSUInteger)_numberOfStars isFractional:(BOOL)isFract;
-- (void)setStar:(UIImage*)defaultStarImage highlightedStar:(UIImage*)highlightedStarImage atIndex:(int)index;
 
+@property (nonatomic) CGFloat offset;
 @property (strong,nonatomic) UIImage *star;
 @property (strong,nonatomic) UIImage *highlightedStar;
 @property (nonatomic) float rating;
