@@ -27,6 +27,7 @@
 
 - (id)initWithFrame:(CGRect)frame;
 - (id)initWithFrame:(CGRect)frame andStars:(NSUInteger)_numberOfStars isFractional:(BOOL)isFract;
+- (void)setupView;
 
 @property (nonatomic) CGFloat offset;
 @property (strong,nonatomic) UIImage *star;
